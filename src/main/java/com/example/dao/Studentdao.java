@@ -1,10 +1,7 @@
 package com.example.dao;
 
-import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +21,7 @@ public class Studentdao  {
 	
 	public void saveStudent(Student student)
 	{
-		System.out.println("Savestudent");
-		System.out.println(student);
-
+		
 		srepo.save(student);
 		
 	}
@@ -36,5 +31,11 @@ public class Studentdao  {
 		Student s=null;
 		return srepo.findById(id).orElse(s);
 		
+	}
+	
+	public List<Student> getAll()
+	{
+		
+		return srepo.findAll();
 	}
 }

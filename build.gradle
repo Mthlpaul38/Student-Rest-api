@@ -27,8 +27,8 @@ dependencies {
 	compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.2.RELEASE'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent
-compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '1.2.1.RELEASE', ext: 'pom'
-	
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '1.2.1.RELEASE', ext: 'pom'
+	testCompile group: 'org.junit', name: 'junit5-api', version: '5.0.0-ALPHA'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

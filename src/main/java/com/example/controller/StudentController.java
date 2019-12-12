@@ -1,7 +1,6 @@
 package com.example.controller;
 
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,24 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dao.Studentdao;
 import com.example.model.Student;
+import com.example.service.StudentService;
 
 @RestController
-@Transactional
 public class StudentController {
 	
 	@Autowired
-	Studentdao sd;
+	StudentService sd;
 	
 	
 	@PostMapping("create")
 	public ResponseEntity<Object> createStudentEntity(@RequestBody Student student)
 	{
-		sd.saveStudent(student);
-		
-		System.out.println("Student Function");
-		return new ResponseEntity<Object>("Created",HttpStatus.CREATED);
+		String msg=sd.saveStudent(student);
+		return new ResponseEntity<Object>(msg,HttpStatus.CREATED);
 	}
 	@GetMapping("get/{id}")
 	public ResponseEntity<Object> getStudenEntity(@PathVariable int id)
@@ -40,6 +36,14 @@ public class StudentController {
 			return new ResponseEntity<Object>(s.toString(),HttpStatus.CREATED);
 		else
 			return new ResponseEntity<Object>("Not Present",HttpStatus.OK);
-		
+		}
+	
+	
+	@GetMapping("getallstudents")
+	public ResponseEntity<Object> getAllStudents()
+	{
+		List <Student> li=sd.getall();
+		return new ResponseEntity<Object>(li.toString(),HttpStatus.OK);
 	}
+	
 }
