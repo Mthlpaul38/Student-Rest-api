@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Ledger {
 
@@ -17,6 +19,12 @@ public class Ledger {
 	int led_id;
 	
 	
+	@Override
+	public String toString() {
+		return "Ledger [led_id=" + led_id + ", item=" + item + ", date_of_purchase=" + date_of_purchase + ", price="
+				+ price + ", student=" + student + "]";
+	}
+
 	String item;
 
 	Date date_of_purchase;
@@ -25,7 +33,8 @@ public class Ledger {
 	int price;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stud_id",nullable = false)
+	@JoinColumn(name = "stud_id",insertable = true,updatable = false)
+	@JsonIgnore
 	Student student;
 
 	public int getLed_id() {

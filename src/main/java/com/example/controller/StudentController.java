@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class StudentController {
 	
 	
 	@PostMapping("create")
-	public ResponseEntity<Object> createStudentEntity(@RequestBody Student student)
+	public ResponseEntity<Object> createStudentEntity(@Valid @RequestBody Student student)
 	{
 		String msg=sd.saveStudent(student);
 		return new ResponseEntity<Object>(msg,HttpStatus.CREATED);
@@ -45,5 +47,7 @@ public class StudentController {
 		List <Student> li=sd.getall();
 		return new ResponseEntity<Object>(li.toString(),HttpStatus.OK);
 	}
+	
+	
 	
 }

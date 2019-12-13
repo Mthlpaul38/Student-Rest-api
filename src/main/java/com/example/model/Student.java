@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +12,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -38,14 +42,14 @@ public class Student {
 	@Max(value=12,message = "class should be between 1 and 12")
 	String clss;
 	
-	@OrderColumn
+	
 	@OneToMany(mappedBy = "student")
-	Ledger ledger[];
+	@JsonIgnore
+	private  List<Ledger> ledger;
 	
 	public int getStud_id() {
 		return stud_id;
 	}
-
 
 	public void setStud_id(int stud_id) {
 		this.stud_id = stud_id;
@@ -82,14 +86,15 @@ public class Student {
 	}
 
 
-	public Ledger[] getLedger() {
+	public List<Ledger> getLedger() {
 		return ledger;
 	}
 
 
-	public void setLedger(Ledger[] ledger) {
+	public void setLedger(List<Ledger> ledger) {
 		this.ledger = ledger;
 	}
+
 
 
 
