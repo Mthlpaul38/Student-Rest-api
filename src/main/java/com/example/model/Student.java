@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -34,7 +33,7 @@ public class Student {
 	}
 
 
-	@NotNull
+	@NotNull(message = "Lastname shoukd not be null")
 	String lastname;
 	
 	

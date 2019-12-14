@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.Studentdao;
+import com.example.exceptions.UsernotFoundException;
 import com.example.model.Student;
 
 @Service
@@ -26,7 +27,7 @@ public class StudentService {
 		if(s!=null)
 			return s;
 		else
-			return null;
+			throw new UsernotFoundException("Usernot found");
 	}
 	
 	public List<Student> getall()
