@@ -19,12 +19,12 @@ public class LedgerService {
 	@Autowired
 	LedgerDao ld;
 	
-	public String createledger(Ledger l, int id)
+	public Ledger createledger(Ledger l, int id)
 	{
 		Student s=sd.getbyId(id);
 		l.setStudent(s);
 		ld.saveLedger(l);
-		return "created";
+		return l;
 	}
 
 	public List<Ledger> getall() {

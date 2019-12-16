@@ -32,7 +32,6 @@ public class Studentdao  {
 		return srepo.findById(id).orElse(s);
 		
 	}
-	
 	public List<Student> getAll()
 	{
 		

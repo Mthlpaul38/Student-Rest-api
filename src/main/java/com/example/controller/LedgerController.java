@@ -27,8 +27,8 @@ public class LedgerController {
 	public ResponseEntity<Object> addLedger(@Valid @PathVariable int id,@RequestBody Ledger l)
 	{
 		System.out.println("ledger controller");
-		String msg=ls.createledger(l,id);
-		return new ResponseEntity<Object>(msg,HttpStatus.CREATED);
+		Ledger l1=ls.createledger(l,id);
+		return new ResponseEntity<Object>(l1.toString() + "created",HttpStatus.CREATED);
 	}
 	
 	@GetMapping("getallledger")
@@ -44,7 +44,7 @@ public class LedgerController {
 		List <Ledger> li=ls.searchbyId(id);
 		return new ResponseEntity<Object>(li.toString(),HttpStatus.OK);
 	}
-	
+
 	@GetMapping("total/{id}")
 	public ResponseEntity<Object>  total(@PathVariable int id)
 	{

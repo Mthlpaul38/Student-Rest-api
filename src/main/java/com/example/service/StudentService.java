@@ -15,10 +15,14 @@ public class StudentService {
 	@Autowired
 	Studentdao sd;
 	
-	public String saveStudent(Student student)
+	public Student saveStudent(Student student)
 	{
+		if(sd.getbyId(student.getStud_id())==null) {
 		sd.saveStudent(student);
-		return "Created";
+		return student;
+		}
+		else 
+			throw new UsernotFoundException("User already exists");
 	}
 	public Student getbyId(int id)
 	{

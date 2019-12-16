@@ -24,14 +24,16 @@ public class CustomException extends ResponseEntityExceptionHandler {
 	  
 	  }
 	 
-	  @ExceptionHandler(UsernotFoundException.class) public final ResponseEntity<Object>
-	  Usernotfound(Exception ex,WebRequest request) {
-	  
-	  ExceptionResponse exceptionResponse=new ExceptionResponse(ex.getMessage(),
-	  request.getDescription(false));
-	  return new ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
-	  
-	  }
+	/*
+	 * @ExceptionHandler(UsernotFoundException.class) public final
+	 * ResponseEntity<Object> Usernotfound(Exception ex,WebRequest request) {
+	 * 
+	 * ExceptionResponse exceptionResponse=new ExceptionResponse(ex.getMessage(),
+	 * request.getDescription(false)); return new
+	 * ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
+	 * 
+	 * }
+	 */
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,

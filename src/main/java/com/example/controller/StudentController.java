@@ -18,36 +18,28 @@ import com.example.service.StudentService;
 
 @RestController
 public class StudentController {
-	
+
 	@Autowired
 	StudentService sd;
-	
-	
+
 	@PostMapping("create")
-	public ResponseEntity<Object> createStudentEntity(@Valid @RequestBody Student student)
-	{
-		String msg=sd.saveStudent(student);
-		return new ResponseEntity<Object>(msg,HttpStatus.CREATED);
+	public ResponseEntity<Object> createStudentEntity(@Valid @RequestBody Student student) {
+		 Student s=sd.saveStudent(student);
+		return new ResponseEntity<Object>(s.toString()+"Created", HttpStatus.CREATED);
 	}
+
 	@GetMapping("get/{id}")
-	public ResponseEntity<Object> getStudenEntity(@PathVariable int id)
-	{
+	public ResponseEntity<Object> getStudenEntity(@PathVariable int id) {
 		Student s;
-		s=sd.getbyId(id);
-		if(s!=null)
-			return new ResponseEntity<Object>(s.toString(),HttpStatus.CREATED);
-		else
-			return new ResponseEntity<Object>("Not Present",HttpStatus.OK);
-		}
-	
-	
-	@GetMapping("getallstudents")
-	public ResponseEntity<Object> getAllStudents()
-	{
-		List <Student> li=sd.getall();
-		return new ResponseEntity<Object>(li.toString(),HttpStatus.OK);
+		s = sd.getbyId(id);
+		return new ResponseEntity<Object>(s.toString(), HttpStatus.CREATED);
+
 	}
-	
-	
-	
+
+	@GetMapping("getallstudents")
+	public ResponseEntity<Object> getAllStudents() {
+		List<Student> li = sd.getall();
+		return new ResponseEntity<Object>(li.toString(), HttpStatus.OK);
+	}
+
 }
