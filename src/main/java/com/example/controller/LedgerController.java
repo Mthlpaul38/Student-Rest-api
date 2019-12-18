@@ -17,6 +17,7 @@ import com.example.model.Ledger;
 import com.example.service.LedgerService;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @RestController
 @AllArgsConstructor
