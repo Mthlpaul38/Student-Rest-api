@@ -19,8 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @RestController
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class StudentController {
 
 	

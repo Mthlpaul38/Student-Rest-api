@@ -4,19 +4,22 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.model.Student;
 import com.example.repository.StudentRepositoy;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Repository
 @Transactional
+@AllArgsConstructor
+@NoArgsConstructor
 public class Studentdao  {
 
 
-	//private EntityManager entityManager;
-	@Autowired
+	
 	StudentRepositoy srepo;
 	
 	public void saveStudent(Student student)

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -29,7 +30,7 @@ import com.example.service.LedgerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes= {com.example.controller.LedgerController.class})
+@WebMvcTest(com.example.controller.LedgerController.class)
 public class LedgerControllerTest {
 	
 	@InjectMocks
