@@ -39,6 +39,7 @@ class LedgerDaoTest {
 
 	@Test
 	void testGetAll() {
+		
 		System.out.println(lr.findAll().size());
 		assertThat(lr.findAll()).hasSize(0);
 	}

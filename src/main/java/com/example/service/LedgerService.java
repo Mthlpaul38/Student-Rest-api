@@ -12,9 +12,9 @@ import com.example.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @Service
 @NoArgsConstructor
-@AllArgsConstructor
 public class LedgerService {
 	
 	

@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 
 @Repository
 @Transactional
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class LedgerDao {
 
 	

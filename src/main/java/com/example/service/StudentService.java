@@ -11,35 +11,45 @@ import com.example.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @Service
 @NoArgsConstructor
-@AllArgsConstructor
 public class StudentService {
 
-
 	private Studentdao sd;
-	
-	public Student saveStudent(Student student)
-	{
-		if(sd.getbyId(student.getStud_id())==null) {
-		sd.saveStudent(student);
-		return student;
-		}
-		else 
+
+	public Student saveStudent(Student student) {
+		if (sd.getbyId(student.getStud_id()) == null) {
+			sd.saveStudent(student);
+			return student;
+		} else
 			throw new UsernotFoundException("User already exists");
 	}
-	public Student getbyId(int id)
-	{
+
+	public Student getbyId(int id) {
 		Student s;
-		s=sd.getbyId(id);
-		if(s!=null)
+		s = sd.getbyId(id);
+		if (s != null)
 			return s;
 		else
 			throw new UsernotFoundException("Usernot found");
 	}
-	
-	public List<Student> getall()
-	{
+
+	public List<Student> getall() {
 		return sd.getAll();
+	}
+
+	public Student updateStudent(int id,Student student) {
+		Student s;
+		s = sd.getbyId(id);
+		if (s != null) {
+			s.setClss(student.getClss());
+			s.setFistname(student.getFistname());
+			s.setLastname(student.getLastname());
+			sd.saveStudent(s);
+			return s;
+		} else
+			throw new UsernotFoundException("Usernot found");
+
 	}
 }

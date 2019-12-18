@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
+@NoArgsConstructor
 public class LedgerController {
 	
 
@@ -60,6 +61,7 @@ public class LedgerController {
 		String msg=ledgerService.delete(id);
 		return new ResponseEntity<Object>(msg,HttpStatus.OK);
 	}
+	
 	
 	@GetMapping("/hello")
 	public String gethello()
