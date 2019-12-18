@@ -4,19 +4,23 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.model.Ledger;
 import com.example.repository.LedgerRepository;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Repository
 @Transactional
+@NoArgsConstructor
+@AllArgsConstructor
 public class LedgerDao {
 
 	
-	@Autowired
-	LedgerRepository lr;
+	
+	private LedgerRepository lr;
 	
 	public void saveLedger(Ledger ledger)
 	{

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,46 +16,57 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.model.Ledger;
 import com.example.service.LedgerService;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @RestController
+@NoArgsConstructor
+@AllArgsConstructor
 public class LedgerController {
 	
-	@Autowired
-	LedgerService ls;
+
+	private LedgerService ledgerService;
 	
 	@PostMapping("addledger/{id}")
 	public ResponseEntity<Object> addLedger(@Valid @PathVariable int id,@RequestBody Ledger l)
 	{
 		System.out.println("ledger controller");
-		Ledger l1=ls.createledger(l,id);
-		return new ResponseEntity<Object>(l1.toString() + "created",HttpStatus.CREATED);
+		Ledger l1=ledgerService.createledger(l,id);
+		return new ResponseEntity<Object>(l1,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("getallledger")
-	public ResponseEntity<Object> getAllStudents()
+	public ResponseEntity<Object> getAlledgerServicetudents()
 	{
-		List <Ledger> li=ls.getall();
+		List <Ledger> li=ledgerService.getall();
 		return new ResponseEntity<Object>(li.toString(),HttpStatus.OK);
 	}
 	
 	@GetMapping("search/{id}")
 	public ResponseEntity<Object> getLedger(@PathVariable int id)
 	{
-		List <Ledger> li=ls.searchbyId(id);
+		List <Ledger> li=ledgerService.searchbyId(id);
 		return new ResponseEntity<Object>(li.toString(),HttpStatus.OK);
 	}
 
-	@GetMapping("total/{id}")
+	@GetMapping("/total/{id}")
 	public ResponseEntity<Object>  total(@PathVariable int id)
 	{
-		Integer total=ls.calcTotal(id);
-		return new ResponseEntity<Object>(id +":"+total,HttpStatus.OK);
+		Integer total=ledgerService.calcTotal(id);
+		return new ResponseEntity<Object>(total,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("delete/{id}")
 	public ResponseEntity<Object>  delete(@PathVariable int id)
 	{
-		String msg=ls.delete(id);
+		String msg=ledgerService.delete(id);
 		return new ResponseEntity<Object>(msg,HttpStatus.OK);
+	}
+	
+	@GetMapping("/hello")
+	public String gethello()
+	{
+		return "hello";
 	}
 	
 }

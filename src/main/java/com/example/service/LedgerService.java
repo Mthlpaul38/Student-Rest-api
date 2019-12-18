@@ -2,7 +2,6 @@ package com.example.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.LedgerDao;
@@ -10,14 +9,19 @@ import com.example.dao.Studentdao;
 import com.example.model.Ledger;
 import com.example.model.Student;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class LedgerService {
 	
-	@Autowired
-	Studentdao sd;
 	
-	@Autowired
-	LedgerDao ld;
+	private Studentdao sd;
+	
+	
+	private LedgerDao ld;
 	
 	public Ledger createledger(Ledger l, int id)
 	{
