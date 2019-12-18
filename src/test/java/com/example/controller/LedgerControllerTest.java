@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Date;
@@ -73,11 +74,10 @@ public class LedgerControllerTest {
 		l.setStudent(s);
 		//doReturn(l).when(ledgerService).createledger(Mockito.any(Ledger.class),1);
 		when(ledgerService.createledger(any(Ledger.class),any(Integer.class))).thenReturn(l);
-		MvcResult result=mockMvc.perform(post("/addledger/1").param("id", "1")).andExpect(status().isCreated()).andReturn();
-		/*
-		 * System.out.println("Result:"+result.getResponse().getContentAsString());
-		 * assertEquals(result.getResponse().getContentAsString(), l);
-		 */}
+		MvcResult result=mockMvc.perform(post("/addledger/1").contentType(MediaType.APPLICATION_JSON).content(asJsonString(l))).andExpect(status().isCreated()).andReturn();
+		 System.out.println("Result:"+result.getResponse().getContentAsString());
+		  assertEquals(result.getResponse().getContentAsString(),asJsonString(l));
+		 }
 	
 	public static String asJsonString(final Object obj) {
 	    try {
