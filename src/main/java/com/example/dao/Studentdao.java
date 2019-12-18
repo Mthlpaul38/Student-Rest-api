@@ -16,7 +16,7 @@ public class Studentdao  {
 
 
 	//private EntityManager entityManager;
-	@Autowired
+
 	StudentRepositoy srepo;
 	
 	public void saveStudent(Student student)
