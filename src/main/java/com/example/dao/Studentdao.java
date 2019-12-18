@@ -10,16 +10,14 @@ import com.example.model.Student;
 import com.example.repository.StudentRepositoy;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Repository
 @Transactional
 @AllArgsConstructor
-@NoArgsConstructor
 public class Studentdao  {
 
 
-	
+
 	StudentRepositoy srepo;
 	
 	public void saveStudent(Student student)
