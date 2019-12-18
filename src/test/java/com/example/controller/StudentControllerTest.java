@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -78,4 +79,18 @@ public class StudentControllerTest {
 				.andReturn();
 		assertEquals(Result.getResponse().getContentAsString(),s.toString());
 	}
+	@Test
+	public void testupdate() throws Exception
+	{
+		Student s = new Student();
+		s.setClss("12");
+		s.setFistname("harinder");
+		s.setLastname("varma");
+		when(ss.updateStudent(any(Integer.class),any(Student.class))).thenReturn(s);
+		MvcResult Result=mockMvc.perform(put("/update/1").param("id", "1").contentType(MediaType.APPLICATION_JSON).content(asJsonString(s))).andExpect(status().isOk())
+				.andReturn();
+		assertEquals(Result.getResponse().getContentAsString(),s.toString());
+	}
+
+
 }
