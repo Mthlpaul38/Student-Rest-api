@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -63,9 +65,7 @@ class LedgerServiceTest {
 		l2.setDate_of_purchase(new Date());
 		l2.setItem("Pencil");
 		l2.setPrice(5);
-		List <Ledger> ledgerList=new ArrayList<Ledger>();
-		ledgerList.add(l);
-		ledgerList.add(l2);
+		List <Ledger> ledgerList=Stream.of(l,l2).collect(Collectors.toList());
 		when(ledgerdao.getAll()).thenReturn(ledgerList);
 		List<Ledger> expected=ledgerdao.getAll();
 		assertThat(expected).hasSize(2);

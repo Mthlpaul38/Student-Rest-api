@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -70,9 +72,7 @@ class StudentServiceTest {
 		s1.setClss("11");
 		s1.setFistname("Lokesh");
 		s1.setLastname("kanth");
-		List<Student> li = new ArrayList<Student>();
-		li.add(s1);
-		li.add(s);
+		List<Student> li = Stream.of(s1,s).collect(Collectors.toList());
 		Mockito.doReturn(li).when(studentdao).getAll();
 		assertAll("List returned", () -> assertThat(studentservice.getall()).hasSize(2),
 								   () -> assertThat(studentservice.getall()).isEqualTo(li));
