@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,6 +86,7 @@ class LedgerServiceTest {
 			assertEquals(ledgerservice.calcTotal(9),sum);
 		
 	}
-
+	
+	
 
 }

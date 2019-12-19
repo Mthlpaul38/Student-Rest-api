@@ -8,6 +8,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -94,6 +97,39 @@ public class LedgerControllerTest {
 		  assertEquals("9",result.getResponse().getContentAsString());
 	}
 	
+	@Test
+	public void testsearch() throws Exception
+	{
+		Ledger l=new Ledger();
+		l.setDate_of_purchase(new Date());
+		l.setItem("Pen");
+		l.setPrice(15);
+		Ledger l2=new Ledger();
+		l2.setDate_of_purchase(new Date());
+		l2.setItem("Pencil");
+		l2.setPrice(5);
+		List <Ledger> ledgerList=Stream.of(l,l2).collect(Collectors.toList());
+		when(ledgerService.searchbyId(any(Integer.class))).thenReturn(ledgerList);
+		MvcResult result=mockMvc.perform(get("/search/9")).andReturn();
+		assertEquals(result.getResponse().getContentAsString(), ledgerList.toString());
+	}
+	
+	@Test
+	public void testgetallledger() throws  Exception
+	{
+		Ledger l=new Ledger();
+		l.setDate_of_purchase(new Date());
+		l.setItem("Pen");
+		l.setPrice(15);
+		Ledger l2=new Ledger();
+		l2.setDate_of_purchase(new Date());
+		l2.setItem("Pencil");
+		l2.setPrice(5);
+		List <Ledger> ledgerList=Stream.of(l,l2).collect(Collectors.toList());
+		when(ledgerService.getall()).thenReturn(ledgerList);
+		MvcResult result=mockMvc.perform(get("/getallledger")).andReturn();
+		assertEquals(result.getResponse().getContentAsString(), ledgerList.toString());
+	}
 
 }
 
