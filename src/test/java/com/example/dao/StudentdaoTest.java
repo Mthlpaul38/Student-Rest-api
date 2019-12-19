@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,8 @@ class StudentdaoTest {
 		s.setClss("12");
 		s.setFistname("harinder");
 		s.setLastname("varma");
-		Mockito.doReturn(s).when(sr).findById(Mockito.any(Integer.class));
+		Optional<Student> opt = Optional.ofNullable(s);
+		Mockito.doReturn(opt).when(sr).findById(Mockito.any(Integer.class));
 		Student expected=sd.getbyId(1);
 		assertEquals(expected,s);
 		

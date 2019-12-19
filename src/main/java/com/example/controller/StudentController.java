@@ -37,11 +37,11 @@ public class StudentController {
 	public ResponseEntity<Object> getStudenEntity(@PathVariable int id) {
 		Student s;
 		s = sd.getbyId(id);
-		return new ResponseEntity<Object>(s, HttpStatus.OK);
+		return new ResponseEntity<Object>(s.toString(), HttpStatus.OK);
 
 	}
 
-	@GetMapping("getallstudents")
+	@GetMapping("/getallstudents")
 	public ResponseEntity<Object> getAllStudents() {
 		List<Student> li = sd.getall();
 		return new ResponseEntity<Object>(li.toString(), HttpStatus.OK);
@@ -51,7 +51,7 @@ public class StudentController {
 	public ResponseEntity<Object> updateStudent(@PathVariable int id,@RequestBody Student student)
 	{
 		Student s=sd.updateStudent(id,student);
-		return new ResponseEntity<Object>(s, HttpStatus.OK);
+		return new ResponseEntity<Object>(s.toString(), HttpStatus.OK);
 		
 	}
 }

@@ -9,6 +9,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -92,5 +95,16 @@ public class StudentControllerTest {
 		assertEquals(Result.getResponse().getContentAsString(),s.toString());
 	}
 
-
+	@Test
+	public void testgetallstudents() throws Exception
+	{
+		Student s = new Student();
+		s.setClss("12");
+		s.setFistname("harinder");
+		s.setLastname("varma");
+		List<Student> li =Arrays.asList(s);
+		when(ss.getall()).thenReturn(li);
+		MvcResult Result=mockMvc.perform(get("/getallstudents")).andExpect(status().isOk()).andReturn();
+		assertEquals(Result.getResponse().getContentAsString(), li.toString());;
+	}
 }
